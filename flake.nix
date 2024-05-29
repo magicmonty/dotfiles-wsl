@@ -19,6 +19,11 @@
       url = "github:magicmonty/nixvim";
       inputs.nixpkgs.follows = "unstable";
     };
+
+    pre-commit-hooks = {
+      url = "github:cachix/pre-commit-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   # We will handle this in the next section.
