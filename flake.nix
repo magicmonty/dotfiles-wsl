@@ -21,7 +21,7 @@
     };
 
     pre-commit-hooks = {
-      url = "github:cachix/pre-commit-hooks.nix";
+      url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -43,6 +43,10 @@
 
       channels-config = {
         allowUnfree = true;
+      };
+
+      alias = {
+        checks.default = "pre-commit-hooks";
       };
     };
 }
