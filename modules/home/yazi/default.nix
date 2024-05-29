@@ -4,12 +4,15 @@
   ...
 }:
 with lib; {
-  programs = {
-    yazi.enable = true;
-    zsh.shellAliases = mkIf config.mgnix.apps.zsh.enable {
+  programs = let
+    aliases = {
       ranger = "yazi";
       "r." = "yazi .";
       "e." = "yazi .";
     };
+  in {
+    yazi.enable = true;
+    zsh.shellAliases = mkIf config.mgnix.apps.zsh.enable aliases;
+    bash.shellAliases = aliases;
   };
 }

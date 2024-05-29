@@ -4,7 +4,11 @@
   ...
 }:
 with lib; {
-  programs = {
+  programs = let
+    aliases = {
+      l = "eza -lag";
+    };
+  in {
     eza = {
       enable = true;
       enableBashIntegration = true;
@@ -13,8 +17,7 @@ with lib; {
       git = true;
     };
 
-    zsh.shellAliases = mkIf config.mgnix.apps.zsh.enable {
-      l = "eza -lag";
-    };
+    zsh.shellAliases = mkIf config.mgnix.apps.zsh.enable aliases;
+    bash.shellAliases = aliases;
   };
 }

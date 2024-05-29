@@ -3,7 +3,11 @@
   lib,
   ...
 }:
-with lib; {
+with lib; let
+  aliases = {
+    cat = "bat";
+  };
+in {
   programs = {
     bat = {
       enable = true;
@@ -13,8 +17,7 @@ with lib; {
       };
     };
 
-    zsh.shellAliases = mkIf config.mgnix.apps.zsh.enable {
-      cat = "bat";
-    };
+    zsh.shellAliases = mkIf config.mgnix.apps.zsh.enable aliases;
+    bash.shellAliases = aliases;
   };
 }

@@ -1,10 +1,10 @@
 {
   mkShell,
   inputs,
-  system,
+  pkgs,
   ...
 }: let
-  check = inputs.pre-commit-hooks.lib.${system}.run {
+  check = inputs.pre-commit-hooks.lib.${pkgs.system}.run {
     src = ./.;
     hooks = {
       statix.enable = true;
@@ -15,6 +15,4 @@ in
   mkShell {
     inherit (check) shellHook;
     buildInputs = check.enabledPackages;
-    # inherit (outputs.checks.${system}.pre-commit-check) shellHook;
-    # buildInputs = outputs.checks.${system}.pre-commit-check.enabledPackages;
   }
